@@ -1,0 +1,37 @@
+{
+  "name": "wms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch-path ./app/ index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=tests/",
+    "format": "npx prettier './**/*.js' --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darrinmn9/WMS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darrinmn9/WMS/issues"
+  },
+  "homepage": "https://github.com/darrinmn9/WMS#readme",
+  "type": "module",
+  "dependencies": {
+    "@apollo/server": "^4.12.2",
+    "better-sqlite3": "^12.2.0",
+    "graphql": "^16.11.0",
+    "knex": "^3.1.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.0.4",
+    "jest": "^30.0.4",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.3"
+  }
+}

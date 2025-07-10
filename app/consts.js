@@ -1,0 +1,15 @@
+export const STATUS_PENDING = 'PENDING';
+export const STATUS_INDUCTED = 'INDUCTED';
+export const STATUS_STOWED = 'STOWED';
+export const STATUS_STAGED = 'STAGED';
+export const STATUS_PICKED = 'PICKED';
+
+export const STATUSES = [
+  STATUS_PENDING,
+  STATUS_INDUCTED,
+  STATUS_STOWED,
+  STATUS_STAGED,
+  STATUS_PICKED,
+];
+
+export const MAX_PALLET_WEIGHT_ALLOWED = 500;
