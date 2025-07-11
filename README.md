@@ -119,4 +119,30 @@ Retrieve pallets from staging location
 
 ## Limitations of Current Design / Future Enhancements
 
-TBD - will complete by EOD Thurs
+#### Limitations/Assumptions of Current Technical Design
+
+- There is no authentication. In a real world WMS, there would likely be auth credentials specific to each warehouse or
+  even to individual operations within the warehouse.
+- Clients can batch `package_ids` in a single request, but they are validated and inserted/updated in the database
+  individually (not as batch db operations).
+- This could be further optimized with a central event bus and queue -> consumer approach, where only initial
+  validation
+  is performed before an API response is returned to the client. Further processing could then be handled asynchronously
+  by consumers, enabling better retriability, easier scalability, and more complex workflow orchestration.
+- The mutations are not idempotent in all scenarios. Idempotency can be very helpful in situations where retries are
+  needed or if operators accidentally submit operations more than once.
+- I don’t consider warehouse operators in this design, but in a production system that would be important, especially if
+  operators have different roles or permission levels.
+
+#### Future Business Logic Enhancements
+
+- Store package dimensions.
+- Support different package types: `fragile`, `keep_frozen`, `normal`.
+- Capture and store a photo of each package upon induction.
+- Track which employee scanned each package (`packages.received_by`).
+- Handle rejected packages with an exception workflow or allow retrying after additional information is provided.
+- Implement an audit log to track all historical events for each package, especially if packages can skip steps or move
+  backward in the workflow.
+- Support reversing status transitions (e.g., `STAGED` -> `STOWED`).
+- Automatically assign packages to existing pallets using an "optimal slotting strategy."
+
